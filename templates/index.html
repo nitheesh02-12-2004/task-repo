@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <h1>My Expense Tracker</h1>
+
+    <h2>Total Income: ₹{{ total_income }}</h2>
+    <h2>Total Expense: ₹{{ total_expense }}</h2>
+    <h2>Balance: ₹{{ balance }}</h2>
+
+    <form action="/add" method="POST">
+        <input type="text" name="description" placeholder="Description" required>
+        <input type="number" name="amount" placeholder="Amount" step="0.01" required>
+
+        <select name="type">
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+        </select>
+
+        <button type="submit">Add Transaction</button>
+    </form>
+
+    <h3>Transaction History</h3>
+
+    {% for t in transactions %}
+        <p>{{ t.description }} - ₹{{ t.amount }} - {{ t.type }}</p>
+    {% endfor %}
+</body>
+</html>
